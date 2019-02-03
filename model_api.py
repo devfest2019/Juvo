@@ -38,7 +38,7 @@ def parse_input(argv):
     print(type(values[-1]))
     return dict(zip(keys, values))
 if __name__ == '__main__':
-    # determine_acceptance(sys.argv)
+    determine_acceptance(sys.argv)
     
-    print(parse_input(['0', '1', '2', '3', '4', 'True']))
+    # print(parse_input(['0', '1', '2', '3', '4', 'True']))
     
