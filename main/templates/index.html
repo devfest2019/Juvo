@@ -37,6 +37,10 @@
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#about">About</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#learn">Learn</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#request">Request</a>
           </li>
         </ul>
@@ -78,7 +82,7 @@
   </section>
 
   <!-- Stories (?) Section -->
-  <section id="projects" class="projects-section bg-light">
+  <section id="learn" class="projects-section bg-light">
     <div class="container">
 
       <!-- Featured Project Row -->
@@ -130,6 +134,11 @@
           </div>
         </div>
       </div>
+     <div class="row justify-content-center no-gutters mt-5">
+         <h3 class="text-black">
+             You can join them. <a href="https://www.edx.org/course/entrepreneurship-in-emerging-economies?fbclid=IwAR24RfuJDWZFJbNYKDQWmsupuvRSHQ7jl4ghnkitTlzmhXPo_7qbym2A96c">Find out how</a>
+         </h3>
+     </div>
 
     </div>
   </section>
@@ -144,7 +153,9 @@
           <h2 class="text-white mb-5">Request a loan</h2>
 
           <form class="form-inline d-flex" method="POST">
-            <input type="text" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" name="email", id="inputEmail" placeholder="Enter email address...">
+            <input type="text" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-2" name="first", id="inputEmail" placeholder="First name">
+            <input type="text" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-2" name="last", id="inputEmail" placeholder="Last name">
+            <input type="email" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" name="email", id="inputEmail" placeholder="Email">
             <button type="submit" class="btn btn-primary mx-auto">Request</button>
           </form>
 
@@ -225,7 +236,7 @@
   <script src="{{ url_for('static', filename='vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
   <!-- Custom scripts for this template -->
-  <script src="{{ url_for('static', filename='js/grayscale.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/grayscale.js') }}"></script>
 
 </body>
 
