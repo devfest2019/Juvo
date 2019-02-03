@@ -6,25 +6,27 @@ Created on Sun Feb  3 01:26:59 2019
 """
 import sys
 import model_helper as mh
+import pandas as pd
+import model as md
 
 
-def determine_acceptance(argv):
+def determine_acceptance(input_dict):
     '''
     Take input form from stdin and print binary decision to stdout.
     '''
     
     # Parse input
-    input_dict = parse_input(argv[1:])
+    #input_dict = parse_input(argv[1:])
     
     # Preprocess
-    preprocessed_data = None
+    preprocessed_data = md.predict(input_dict)
     
     # Load model and predict
     model = mh.load_model()
     decision = model.predict(preprocessed_data)[0] >= 0.5
     
     # Output to stdout
-    sys.stdout.write(decision)
+    return decision
     
 def parse_input(argv):
     keys = [key for i, key in enumerate(argv) if i%2 == 0]
@@ -38,7 +40,7 @@ def parse_input(argv):
     print(type(values[-1]))
     return dict(zip(keys, values))
 if __name__ == '__main__':
-    determine_acceptance(sys.argv)
+    # determine_acceptance(sys.argv)
     
     # print(parse_input(['0', '1', '2', '3', '4', 'True']))
     
