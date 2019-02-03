@@ -2,7 +2,7 @@
 
 ## Description
 Microfinancing web platform powered by Neural Network and Deep Learning.
-
+https://www.beautiful.ai/deck/-LXlSpqf0qA4GEUV-_Rn/Juvo
 ## Dependencies
 Flask==1.0.2
 
