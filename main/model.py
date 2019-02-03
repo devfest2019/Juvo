@@ -327,38 +327,38 @@ output_dim = 1
 # In[35]:
 
 
-def simpleNN():
-    model = Sequential()
-    model.add(Dense(input_dim, input_dim=input_dim, activation='relu', use_bias=True))
-    model.add(Dense(10, activation='relu', use_bias=True))
-    model.add(Dropout(rate=0.3))
-    model.add(Dense(output_dim, activation='sigmoid'))
-    model.compile(loss='binary_crossentropy',
-                  optimizer='rmsprop',
-                  metrics=['accuracy'])
-    return model
-
-
-# In[36]:
-
-
-model = simpleNN()
-history = model.fit(X_train, Y_train,
-                    epochs=10,
-                    verbose=1,
-                    validation_data = (X_valid, Y_valid),
-                    callbacks=callbacks_list,
-                    batch_size=8)
-print(model.summary())
-
-loss, accuracy = model.evaluate(X_train, Y_train, verbose=False)
-print('Training Accuracy: {:.4f}'.format(accuracy))
-loss, accuracy = model.evaluate(X_valid, Y_valid, verbose=False)
-print('Validation Accuracy: {:.4f}'.format(accuracy))
-loss, accuracy = model.evaluate(X_test, Y_test, verbose=False)
-print('Testing Accuracy: {:.4f}'.format(accuracy))
-
-plot_history(history)
+# def simpleNN():
+#     model = Sequential()
+#     model.add(Dense(input_dim, input_dim=input_dim, activation='relu', use_bias=True))
+#     model.add(Dense(10, activation='relu', use_bias=True))
+#     model.add(Dropout(rate=0.3))
+#     model.add(Dense(output_dim, activation='sigmoid'))
+#     model.compile(loss='binary_crossentropy',
+#                   optimizer='rmsprop',
+#                   metrics=['accuracy'])
+#     return model
+# 
+# 
+# # In[36]:
+# 
+# 
+# model = simpleNN()
+# history = model.fit(X_train, Y_train,
+#                     epochs=10,
+#                     verbose=1,
+#                     validation_data = (X_valid, Y_valid),
+#                     callbacks=callbacks_list,
+#                     batch_size=8)
+# print(model.summary())
+# 
+# loss, accuracy = model.evaluate(X_train, Y_train, verbose=False)
+# print('Training Accuracy: {:.4f}'.format(accuracy))
+# loss, accuracy = model.evaluate(X_valid, Y_valid, verbose=False)
+# print('Validation Accuracy: {:.4f}'.format(accuracy))
+# loss, accuracy = model.evaluate(X_test, Y_test, verbose=False)
+# print('Testing Accuracy: {:.4f}'.format(accuracy))
+# 
+# plot_history(history)
 
 
 # In[37]:
@@ -380,6 +380,7 @@ print('K-fold Validation Results: %.2f%% (%.2f%%)' % (results.mean()*100, result
 # ## API
 def predict(d):
     x = pd.DataFrame(np.array([[0]*19]),columns = list(X.columns.values))
+    print("Input dict: " + str(d))
     
     income = d['income']
     amount = d['amount']
@@ -388,7 +389,10 @@ def predict(d):
     years_in_job = d['years_in_job']
     years_credit_history = d['years_credit_history']
     number_credit_problems = d['number_credit_problems']
-    home = d['home']
+    home = d['home'] if 'home' in d.keys() else False
+    
+    print("Mean_dict: " + str(mean_dict))
+    print("Mean_dict type: " + str(type(mean_dict)))
     
     x['Current Loan Amount'] = (amount - mean_dict['Current Loan Amount'])/std_dict['Current Loan Amount']
     x['Term'] = 1 if term >= 12 else 0

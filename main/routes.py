@@ -2,6 +2,10 @@ from flask import render_template, flash, redirect, request, url_for
 
 from main import app
 from main import bank
+from main import model_api
+
+import os
+print(os.getcwd())
 
 # :(
 customer_name = None
@@ -27,7 +31,7 @@ def education():
 @app.route('/form.html', methods=['GET', 'POST'])
 def form():
     if request.method == 'POST':
-        if _is_good(request.form):
+        if _is_good(request.form) and 'home' in request.form:
             return render_template('good.html', url=url)
         else:
             return render_template('bad.html')
@@ -38,25 +42,14 @@ def form():
 def _is_good(form_data):
     global url
 
-    if _model_approves(form_data):
+    if model_api.determine_acceptance(form_data.to_dict()):
         ccs = 750
         url = bank.make_account(customer_name)
         bank.make_loan(url, ccs)
         print(url)
         return True
-
     else:
         return False
-
-
-def _model_approves(form_data):
-    args = []
-    for key in form_data.keys():
-        args.append(key)
-        args.append(form_data[key])
-    str_args = " ".join(args)
-
-    return True
 
 
 @app.route('/good.html')
